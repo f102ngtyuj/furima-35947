@@ -4,7 +4,7 @@
 
 |Column             |Type   |Options                   |
 |------------------ |------ |------------------------- |
-|nicckname          |string |null: false               |
+|nickname           |string |null: false               |
 |email              |string |null: false, unique: true |
 |encripted_password |string |null: false               |
 |last_name          |string |null: false               |
@@ -62,7 +62,7 @@
 |area_id       |integer    |null: false                    |
 |municipality  |string     |null: false                    |
 |address       |string     |null: false                    |
-|building_name |string     |null: false                    |
+|building_name |string     |                               |
 |phone_number  |string     |null: false                    |
 
 ### Association
