@@ -6,11 +6,12 @@ class Item < ApplicationRecord
   belongs_to_active_hash :area
   belongs_to_active_hash :shipping_date
   has_one_attached :image
+  belongs_to :user
 
   with_options presence: true do
     validates :user
     validates :product_name
-    validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
+    validates :price
     validates :description
   end
 
@@ -20,5 +21,6 @@ class Item < ApplicationRecord
     validates :burden_id
     validates :area_id
     validates :shipping_date_id
+
   end
 end
