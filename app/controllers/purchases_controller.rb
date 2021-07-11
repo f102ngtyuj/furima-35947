@@ -5,7 +5,13 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    binding.pry
+    @purchase = Purchase.create(purchase_params)
+  end
+
+  private 
+
+  def purchase_params
+    params.permit(:post_code, :area_id, :municipality, :address, :building_name, :phone_number)
   end
 
 end
