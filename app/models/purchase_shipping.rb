@@ -10,6 +10,7 @@ class PurchaseShipping
     validates :phone_number, numericality: { only_integer: true }
     validates :user_id
     validates :item_id
+    validates :token
   end
 
   def save
