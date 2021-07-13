@@ -14,7 +14,7 @@ class PurchasesController < ApplicationController
     if @purchase_shipping.valid? 
       pay_item
       @purchase_shipping.save
-      redirect_to item_purchases_path
+      redirect_to root_path
     else
       render :index
     end
@@ -23,8 +23,8 @@ class PurchasesController < ApplicationController
   private 
 
   def purchase_params
-    item = Item.find(params[:item_id])
-    params.require(:purchase_shipping).permit(:post_code, :area_id, :municipality, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: item.id, token: params[:token])
+    @item = Item.find(params[:item_id])
+    params.require(:purchase_shipping).permit(:post_code, :area_id, :municipality, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end
 
   def pay_item

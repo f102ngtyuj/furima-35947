@@ -13,9 +13,6 @@ RSpec.describe PurchaseShipping, type: :model do
       it 'すべてのフォームの入力がされている' do
         expect(@purchase_shipping).to be_valid
       end
-      it "tokenがあれば保存ができる" do
-        expect(@purchase_shipping).to be_valid
-      end
       it "building_name が空の場合でも保存できる" do
         @purchase_shipping.building_name = ''
         @purchase_shipping.valid?
@@ -59,10 +56,10 @@ RSpec.describe PurchaseShipping, type: :model do
         @purchase_shipping.valid?
         expect(@purchase_shipping.errors.full_messages).to include("Phone number is not a number")
       end
-      it 'phone_number が11桁以内の数値のみでなければ保存できない' do
-        @purchase_shipping.phone_number = '０００００００００００'
+      it 'phone_number が12桁以上の半角数値だと保存できない' do
+        @purchase_shipping.phone_number = '000000000000'
         @purchase_shipping.valid?
-        expect(@purchase_shipping.errors.full_messages).to include("Phone number is not a number")
+        expect(@purchase_shipping.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
       end
       it "token が空では登録できない" do
         @purchase_shipping.token = nil
