@@ -13,6 +13,9 @@ RSpec.describe PurchaseShipping, type: :model do
       it 'すべてのフォームの入力がされている' do
         expect(@purchase_shipping).to be_valid
       end
+      it "tokenがあれば保存ができる" do
+        expect(@purchase_shipping).to be_valid
+      end
       it "building_name が空の場合でも保存できる" do
         @purchase_shipping.building_name = ''
         @purchase_shipping.valid?
@@ -60,6 +63,11 @@ RSpec.describe PurchaseShipping, type: :model do
         @purchase_shipping.phone_number = '０００００００００００'
         @purchase_shipping.valid?
         expect(@purchase_shipping.errors.full_messages).to include("Phone number is not a number")
+      end
+      it "token が空では登録できない" do
+        @purchase_shipping.token = nil
+        @purchase_shipping.valid?
+        expect(@purchase_shipping.errors.full_messages).to include("Token can't be blank")
       end
       it "user_id が空では登録できない" do
         @purchase_shipping.user_id = nil
